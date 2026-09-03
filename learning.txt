@@ -1,0 +1,58 @@
+Contexto
+A XYZ Administradora de Cartões de Crédito busca uma solução robusta para gerenciar transações financeiras de clientes. A aplicação precisa ser eficiente, escalável e bem estruturada, garantindo confiabilidade no processamento de um alto volume de dados.
+Objetivo
+Desenvolver um sistema para cadastro e gerenciamento de transações de cartão de crédito, implementando boas práticas de código, manipulação eficiente de dados e exportação de relatórios.
+1. Desenvolvimento do CRUD - VB6 ou VB.NET
+Criar uma aplicação para gerenciar transações de cartão de crédito com as seguintes funcionalidades:
+Cadastro de transações:
+Campos obrigatórios:
+- Id_Transacao (gerado automaticamente)
+- Numero_Cartao (16 dígitos)
+- Valor_Transacao (decimal positivo)
+- Data_Transacao (data/hora do registro)
+- Descricao (até 255 caracteres)
+- Status_Transacao (Aprovada, Pendente, Cancelada)
+Edição de transações:
+Permitir edição de qualquer campo exceto transações com status 'Aprovada'.
+Exclusão de transações:
+Confirmação antes da exclusão.
+Registro de erro caso falhe.
+Consulta de transações:
+Filtros opcionais: Numero_Cartao, Data_Transacao, Valor_Transacao, Status_Transacao.
+Exibição em DataGrid, com paginação eficiente para lidar com grandes volumes de dados.
+Tratamento de Erros e Logs:
+Exibir mensagens amigáveis ao usuário.
+Registrar erros em arquivo de log detalhado.
+2. Stored Procedure - SQL Server
+Criar uma Stored Procedure otimizada para calcular o total de transações dentro de um período.
+Parâmetros de entrada:
+@Data_Inicial (DATETIME)
+@Data_Final (DATETIME)
+@Status_Transacao (VARCHAR)
+Saída esperada:
+Numero_Cartao, Valor_Total (SUM do Valor_Transacao), Quantidade_Transacoes (COUNT), Status_Transacao
+3. Funções no SQL Server
+Criar uma scalar function que recebe um valor e retorna a categoria.
+Faixa de Valor (R$)	Categoria
+> 2000	Premium
+1000 - 2000	Alta
+500 - 1000	Média
+< 500	Baixa
+Table-Valued Function (TVF)
+Criar uma TVF que retorna todas as transações categorizadas para um período.
+- Deve utilizar a função de categorização definida anteriormente.
+4. View no SQL Server
+Criar uma View consolidada para facilitar consultas financeiras.
+5. Exportação de Relatórios em Excel - VB.NET
+Exportar transações do último mês para um arquivo Excel.
+Critérios de Avaliação
+- Código-fonte organizado e escalável
+- Eficiência e escalabilidade das queries SQL
+- Interface intuitiva e amigável
+- Relatório Excel funcional e bem estruturado
+- Manipulação de grandes volumes de dados
+Entregáveis
+1. Código-fonte da aplicação (via GitHub).
+2. Script SQL completo (tabelas, procedures, functions, views e dados de exemplo).
+3. Exemplo de relatório Excel gerado.
+🚨 Observação: Não é necessário desenvolver testes unitários.
