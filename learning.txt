@@ -1,3 +1,5 @@
+teste
+
 Contexto
 A XYZ Administradora de Cartões de Crédito busca uma solução robusta para gerenciar transações financeiras de clientes. A aplicação precisa ser eficiente, escalável e bem estruturada, garantindo confiabilidade no processamento de um alto volume de dados.
 Objetivo
