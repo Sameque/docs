@@ -21,11 +21,12 @@ Este arquivo é o ponto de entrada para qualquer agente de IA (Claude Code, Code
 
 ## Diretrizes Obrigatórias
 
-Antes de escrever ou alterar qualquer código, leia integralmente os três arquivos abaixo e siga tudo o que eles determinam. Eles têm prioridade sobre qualquer convenção genérica do agente. Se o seu agente não os carregar automaticamente, leia-os manualmente como primeiro passo de qualquer tarefa:
+Antes de escrever ou alterar qualquer código, leia integralmente os quatro arquivos abaixo e siga tudo o que eles determinam. Eles têm prioridade sobre qualquer convenção genérica do agente. Se o seu agente não os carregar automaticamente, leia-os manualmente como primeiro passo de qualquer tarefa:
 
 - `docs/diretrizes/developing.md` — fluxo de trabalho: branches, commits, Pull Requests, revisão de código, critérios de merge e deploy.
 - `docs/diretrizes/dotnet.md` — padrões de código C#/.NET: princípios (KISS, DRY, SOLID, YAGNI), estilo, nulidade, tratamento de exceções, testes, bibliotecas.
 - `docs/diretrizes/handle-error.md` — registro de erros: todo erro identificado, inferido ou corrigido deve ser documentado em `docs/erros/`, seguindo o template definido nesse arquivo.
+- `docs/diretrizes/lessons-learned.md` — orientações de "fazer" e "evitar" extraídas de erros já resolvidos; consultar antes de implementar, para não repetir problemas conhecidos.
 
 ---
 

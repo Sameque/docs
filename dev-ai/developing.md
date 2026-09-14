@@ -25,13 +25,15 @@ git pull origin develop
 
 Crie uma nova branch a partir da branch `develop`.
 
-Padrão de nomenclatura:
+**Exceção:** branches `hotfix/` devem ser criadas a partir da branch de produção (`main`), não da `develop`, por se tratarem de correções urgentes já em produção. Após o deploy, a branch de hotfix deve ser mesclada tanto na `main` quanto na `develop`.
+
+Padrão de nomenclatura (letras minúsculas, palavras separadas por hífen):
 
 ```text
-feature/NOME_DA_FUNCIONALIDADE
-bugfix/NOME_DO_BUG
-hotfix/NOME_DO_HOTFIX
-refactor/NOME_DO_REFACTOR
+feature/nome-da-funcionalidade
+bugfix/nome-do-bug
+hotfix/nome-do-hotfix
+refactor/nome-do-refactor
 ```
 
 Exemplo:
@@ -68,7 +70,7 @@ git push -u origin feature/cadastro-clientes
 ### Nunca
 
 - Alterar código sem entender seu impacto.
-- Comentar código morto.
+- Deixar código morto comentado em vez de removê-lo.
 - Fazer commit de arquivos temporários.
 - Fazer commit de credenciais, tokens ou senhas.
 - Adicionar dependências sem justificativa técnica.
@@ -79,8 +81,8 @@ git push -u origin feature/cadastro-clientes
 
 ## 3. Commits
 
-Os commits devem ser pequenos, atômicos e descritivos.
-Não coloque e-mail ou qualquer marcação da LLM, Agente ou Ferramenta de AI.
+Os commits devem ser pequenos, atômicos e descritivos, seguindo o padrão Conventional Commits.
+Não incluir e-mail ou qualquer marcação de LLM, Agente ou Ferramenta de IA na mensagem (ex.: rodapés como "Co-Authored-By: Claude", assinaturas do tipo "Generated with [ferramenta]" ou emojis identificando a ferramenta).
 
 ### Padrão recomendado
 
@@ -94,6 +96,8 @@ refactor: simplifica regra de cálculo
 test: adiciona testes da API de autenticação
 
 docs: atualiza documentação de instalação
+
+chore: atualiza dependências do projeto
 ```
 
 ### Evitar
@@ -186,6 +190,10 @@ Adicionar funcionalidade de cadastro de clientes.
 3. Preencher os campos obrigatórios
 4. Salvar
 
+## Erros encontrados
+
+Listar os arquivos criados ou atualizados em docs/erros/ durante este desenvolvimento (ou "Nenhum erro identificado"). Indicar também se docs/diretrizes/lessons-learned.md foi atualizado.
+
 ## Evidências
 
 Anexar prints ou vídeos.
@@ -277,6 +285,7 @@ O merge somente poderá ser realizado quando:
 - [ ] Sem conflitos
 - [ ] Sem vulnerabilidades críticas
 - [ ] Documentação atualizada quando necessário
+- [ ] Erros encontrados registrados em docs/erros/, com docs/diretrizes/lessons-learned.md atualizado quando aplicável
 
 ---
 

@@ -6,3 +6,4 @@ As diretrizes gerais deste projeto ficam no `AGENTS.md`, escrito para funcionar 
 @docs/diretrizes/developing.md
 @docs/diretrizes/dotnet.md
 @docs/diretrizes/handle-error.md
+@docs/diretrizes/lessons-learned.md
