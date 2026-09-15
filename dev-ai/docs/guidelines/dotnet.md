@@ -1,4 +1,4 @@
-# Diretrizes de Desenvolvimento C#/.NET
+# guidelines de Desenvolvimento C#/.NET
 
 ## Linguagem
 
@@ -161,5 +161,5 @@ Aplicar os princípios SOLID sempre que fizer sentido:
 - Não realizar mudanças arquiteturais sem aprovação prévia.
 - Não adicionar bibliotecas, frameworks ou infraestruturas sem aprovação.
 - Em caso de dúvida sobre regras de negócio, solicitar esclarecimentos antes da implementação.
-- Para decisões técnicas de baixo impacto, seguir as diretrizes deste documento e os padrões já existentes no projeto.
+- Para decisões técnicas de baixo impacto, seguir as guidelines deste documento e os padrões já existentes no projeto.
 - Sempre considerar KISS, DRY, SOLID e YAGNI antes de implementar qualquer solução.

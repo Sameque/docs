@@ -1,4 +1,4 @@
-# Diretrizes de Desenvolvimento e Gestão de Código
+# Guidelines de Desenvolvimento e Gestão de Código
 
 ## Objetivo
 
@@ -10,9 +10,15 @@ Garantir padronização, rastreabilidade, qualidade e segurança no ciclo de des
 
 ## 1. Antes de iniciar qualquer desenvolvimento
 
+### Estrutura de branches (trunk-based)
+
+- `develop` é a branch padrão (default) do repositório e o trunk principal: base das branches de desenvolvimento, referência de comparação e alvo dos Pull Requests.
+- `main` é a branch de produção: reflete o estado em produção e recebe merges de hotfix e releases.
+- Estratégia trunk-based: branches de vida curta criadas a partir do trunk (`develop`) e integradas de volta rapidamente por Pull Requests pequenos e frequentes.
+
 ### Atualizar a branch develop
 
-Sempre sincronize sua cópia local com a branch `develop`.
+Sempre sincronize sua cópia local com a branch `develop` (trunk principal).
 
 Exemplo:
 
