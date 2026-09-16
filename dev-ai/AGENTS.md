@@ -35,3 +35,18 @@ Antes de escrever ou alterar qualquer código, leia integralmente os quatro arqu
 - Dúvida sobre regra de negócio, mudança arquitetural ou nova biblioteca: parar e perguntar ao responsável pelo projeto antes de implementar — nunca presumir aprovação tácita (ver `dotnet.md`, seção "Regras de Ouro").
 - Conflito entre este arquivo e uma das guidelines obrigatórias: as guidelines obrigatórias prevalecem, exceto quando a seção "Sobre o Projeto" acima registrar explicitamente uma exceção para este projeto.
 - Conflito entre uma instrução direta dada na conversa e qualquer guideline: a instrução direta do responsável pelo projeto prevalece.
+
+---
+
+## Marcações de Ferramentas de IA
+
+Nunca incluir marcações, assinaturas ou menções de LLM, agente de IA ou ferramenta de IA em qualquer artefato de texto produzido para o projeto: Pull Requests (título, descrição ou comentários), mensagens de commit, comentários no código-fonte, documentação, ou qualquer outro texto gerado como parte do trabalho.
+
+Exemplos do que evitar:
+
+- Rodapés como "Co-Authored-By: Claude" ou similares.
+- Assinaturas do tipo "Generated with [ferramenta]" ou "Written by AI".
+- Emojis ou marcas d'água que identifiquem a ferramenta usada.
+- Comentários no código como `// gerado por IA` ou `// revisado pelo agente`.
+
+Esta regra vale independentemente de qual agente ou ferramenta esteja sendo usado.

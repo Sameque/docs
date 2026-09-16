@@ -88,7 +88,7 @@ git push -u origin feature/cadastro-clientes
 ## 3. Commits
 
 Os commits devem ser pequenos, atômicos e descritivos, seguindo o padrão Conventional Commits.
-Não incluir e-mail ou qualquer marcação de LLM, Agente ou Ferramenta de IA na mensagem (ex.: rodapés como "Co-Authored-By: Claude", assinaturas do tipo "Generated with [ferramenta]" ou emojis identificando a ferramenta).
+Não incluir e-mail na mensagem, nem marcações de LLM, Agente ou Ferramenta de IA (ver AGENTS.md, seção "Marcações de Ferramentas de IA", para exemplos e escopo completo).
 
 ### Padrão recomendado
 
@@ -168,7 +168,7 @@ Realize uma auto revisão:
 
 ## 6. Criação do Pull Request
 
-O Pull Request deve conter:
+O Pull Request deve conter (título, descrição e comentários sem marcações de LLM, Agente ou Ferramenta de IA — ver AGENTS.md, seção "Marcações de Ferramentas de IA"):
 
 ### Título
 

@@ -132,6 +132,7 @@ Aplicar os princípios SOLID sempre que fizer sentido:
 - Utilizar readonly sempre que possível.
 - Declarar variáveis com o menor escopo possível.
 - Priorizar legibilidade sobre otimizações prematuras.
+- Não incluir marcações de LLM, Agente ou Ferramenta de IA em comentários do código (ver AGENTS.md, seção "Marcações de Ferramentas de IA").
 
 ---
 
