@@ -198,7 +198,7 @@ Adicionar funcionalidade de cadastro de clientes.
 
 ## Erros encontrados
 
-Listar os arquivos criados ou atualizados em docs/erros/ durante este desenvolvimento (ou "Nenhum erro identificado"). Indicar também se docs/diretrizes/lessons-learned.md foi atualizado.
+Listar os arquivos criados ou atualizados em docs/erros/ durante este desenvolvimento (ou "Nenhum erro identificado"). Indicar também se docs/guidelines/lessons-learned.md foi atualizado.
 
 ## Evidências
 
@@ -291,7 +291,7 @@ O merge somente poderá ser realizado quando:
 - [ ] Sem conflitos
 - [ ] Sem vulnerabilidades críticas
 - [ ] Documentação atualizada quando necessário
-- [ ] Erros encontrados registrados em docs/erros/, com docs/diretrizes/lessons-learned.md atualizado quando aplicável
+- [ ] Erros encontrados registrados em docs/erros/, com docs/guidelines/lessons-learned.md atualizado quando aplicável
 
 ---
 

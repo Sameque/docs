@@ -1,4 +1,4 @@
-# Diretriz de Registro de Erros
+# Guideline de Registro de Erros
 
 ## Objetivo
 

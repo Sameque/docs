@@ -1,4 +1,4 @@
-# Lições Aprendidas
+# Lessons Learned
 
 Orientações objetivas de "o que fazer" e "o que evitar", extraídas de erros já resolvidos no projeto. Consultar este arquivo antes de implementar qualquer funcionalidade, junto com `dotnet.md` e `developing.md`.
 

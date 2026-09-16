@@ -1,10 +1,10 @@
-# guidelines de Desenvolvimento C#/.NET
+# Guidelines de Desenvolvimento C#/.NET
 
 ## Linguagem
 
 - Utilizar .NET 10 e a versão do C# suportada pelo projeto.
-- Sempre utilizar recursos modernos da linguagem quando aumentarem a legibilidade e simplicidade do código.
-- Seguir as especificações ECMA-334 (C#) e ECMA-335 (CLI) como referência.
+- Sempre utilizar recursos modernos da linguagem quando aumentarem a legibilidade e simplicidade do código. Exemplos disponíveis a partir do C# 14/.NET 10: namespaces com escopo de arquivo (file-scoped), primary constructors, records e record structs, pattern matching, collection expressions, propriedades required e init-only, extension properties/methods e field-backed properties.
+- Seguir as especificações ECMA-334 (C#) e ECMA-335 (CLI) como referência formal de gramática e infraestrutura. Atenção: a padronização ECMA fica bem atrás da versão comercial do C# — a 7ª edição do ECMA-334 (dez/2023) cobre aproximadamente o C# 7 (2017), enquanto o projeto usa C# 14. Em caso de conflito, prevalece o comportamento oficial do compilador/documentação da Microsoft para a versão do C# em uso, não o texto do ECMA.
 
 ---
 
@@ -42,6 +42,12 @@ Aplicar os princípios SOLID sempre que fizer sentido:
 
 ## Código
 
+### Nullable Reference Types
+
+- Manter Nullable Reference Types habilitado (`<Nullable>enable</Nullable>`) em todos os projetos.
+- Tratar avisos de nulidade do compilador como problemas a resolver, não como avisos a ignorar ou suprimir sem justificativa.
+- Usar `ArgumentNullException.ThrowIfNull()` como guarda em tempo de execução — ele complementa a checagem em tempo de compilação do Nullable Reference Types, não a substitui.
+
 ### Estilo de Codificação
 
 - Utilizar nomenclaturas em inglês para classes, métodos, propriedades, variáveis, interfaces e namespaces.
@@ -51,6 +57,7 @@ Aplicar os princípios SOLID sempre que fizer sentido:
 - Seguir a regra: tão longo quanto necessário para ser claro e tão curto quanto possível para manter a legibilidade.
 - Utilizar PascalCase para classes, métodos, propriedades, enums e records.
 - Utilizar camelCase para parâmetros e variáveis locais.
+- Utilizar _camelCase (camelCase com underscore antes) para campos privados.
 - Interfaces devem iniciar com o prefixo "I".
 - Evitar abreviações não padronizadas.
 
@@ -69,8 +76,8 @@ Aplicar os princípios SOLID sempre que fizer sentido:
 
 ### Organização
 
-- Cada classe deve possuir seu próprio arquivo.
-- O nome do arquivo deve ser igual ao nome da classe principal.
+- Cada classe, record, struct, enum ou interface deve possuir seu próprio arquivo.
+- O nome do arquivo deve ser igual ao nome do tipo principal declarado nele.
 - Organizar pastas conforme a arquitetura do projeto.
 - Evitar classes excessivamente grandes (God Classes).
 - Manter alta coesão e baixo acoplamento.
@@ -102,7 +109,7 @@ Aplicar os princípios SOLID sempre que fizer sentido:
 - Nunca utilizar blocos catch vazios.
 - Registrar erros relevantes em logs.
 - Não utilizar exceções para controle de fluxo.
-- Capturar exceções apenas quando existir uma ação de recuperação.
+- Capturar exceções quando existir uma ação de recuperação, um tratamento específico, ou a necessidade de registrar em log e/ou converter a exceção antes de repropagá-la (por exemplo, em middlewares e handlers globais de exceção).
 - Preservar a stack trace original.
 
 ---
@@ -141,7 +148,7 @@ Aplicar os princípios SOLID sempre que fizer sentido:
 
 - Registrar apenas informações relevantes.
 - Nunca registrar senhas, tokens ou dados sensíveis.
-- Utilizar níveis adequados de log (Information, Warning, Error e Critical).
+- Utilizar níveis adequados de log (Information, Warning, Error e Critical). Trace e Debug ficam reservados à depuração local e não devem ser habilitados em produção.
 
 ---
 
@@ -163,3 +170,4 @@ Aplicar os princípios SOLID sempre que fizer sentido:
 - Em caso de dúvida sobre regras de negócio, solicitar esclarecimentos antes da implementação.
 - Para decisões técnicas de baixo impacto, seguir as guidelines deste documento e os padrões já existentes no projeto.
 - Sempre considerar KISS, DRY, SOLID e YAGNI antes de implementar qualquer solução.
+- Toda solicitação de aprovação ou esclarecimento — deste ou de outros documentos de guidelines — deve ser feita diretamente ao responsável pelo projeto, pausando a implementação até haver resposta explícita. Nunca presumir aprovação tácita.

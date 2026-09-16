@@ -34,4 +34,4 @@ Antes de escrever ou alterar qualquer código, leia integralmente os quatro arqu
 
 - Dúvida sobre regra de negócio, mudança arquitetural ou nova biblioteca: parar e perguntar ao responsável pelo projeto antes de implementar — nunca presumir aprovação tácita (ver `dotnet.md`, seção "Regras de Ouro").
 - Conflito entre este arquivo e uma das guidelines obrigatórias: as guidelines obrigatórias prevalecem, exceto quando a seção "Sobre o Projeto" acima registrar explicitamente uma exceção para este projeto.
-- Conflito entre uma instrução direta dada na conversa e qualquer diretriz: a instrução direta do responsável pelo projeto prevalece.
+- Conflito entre uma instrução direta dada na conversa e qualquer guideline: a instrução direta do responsável pelo projeto prevalece.
