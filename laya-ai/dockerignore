@@ -1,0 +1,9 @@
+.git
+.venv
+__pycache__
+*.pyc
+.env
+*.md
+!README.md
+tests/
+scripts/
