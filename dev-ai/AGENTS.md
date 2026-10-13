@@ -26,7 +26,7 @@ Antes de escrever ou alterar qualquer código, leia integralmente os quatro arqu
 - `docs/guidelines/developing.md` — fluxo de trabalho: branches, commits, Pull Requests, revisão de código, critérios de merge e deploy.
 - `docs/guidelines/dotnet.md` — padrões de código C#/.NET: princípios (KISS, DRY, SOLID, YAGNI), estilo, nulidade, tratamento de exceções, testes, bibliotecas.
 - `docs/guidelines/handle-error.md` — registro de erros: todo erro identificado, inferido ou corrigido deve ser documentado em `docs/erros/`, seguindo o template definido nesse arquivo.
-- `docs/guidelines/lessons-learned.md` — orientações de "fazer" e "evitar" extraídas de erros já resolvidos; consultar antes de implementar, para não repetir problemas conhecidos.
+- `docs/lessons-learned.md` — orientações de "fazer" e "evitar" extraídas de erros já resolvidos; consultar antes de implementar, para não repetir problemas conhecidos.
 
 ---
 
