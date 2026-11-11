@@ -30,7 +30,7 @@
    - 6.3 [Exemplo em Node.js](#63-exemplo-em-nodejs)
 7. [Testes e Validação](#7-testes-e-validação)
 8. [Troubleshooting](#8-troubleshooting)
-9. [Boas Práticas e Segurança](#9-boas-práticas-e-seurança)
+9. [Boas Práticas e Segurança](#9-boas-práticas-e-segurança)
 10. [Referências Oficiais](#10-referências-oficiais)
 
 ---
@@ -60,7 +60,7 @@ A integração entre **Azure DevOps** e **Microsoft Teams** para notificações 
 5. A mensagem formatada (Adaptive Card) é enviada para o webhook do Teams
 6. O Teams exibe a notificação no canal/grupo configurado
 
-> **Nota importante:** Os conectores do Office 365 no Teams estão sendo descontinuados. A Microsoft recomenda o uso de **Workflows** (Power Automate) para criar webhooks de entrada. Webhooks criados via conectores antigos continuarão funcionando até dezembro de 2025, mas não é mais possível criar novos.
+> **Nota importante:** Os conectores do Office 365 no Teams foram descontinuados e **pararam de funcionar em dezembro de 2025** — não é mais possível criar novos nem usar os existentes. A Microsoft recomenda o uso de **Workflows** (Power Automate) para criar webhooks de entrada; este guia assume esse método.
 
 ---
 
@@ -117,7 +117,9 @@ Antes de configurar o Azure DevOps, valide que o webhook funciona:
 
 **Usando cURL:**
 ```bash
-curl -X POST <URL_DO_WEBHOOK>   -H "Content-Type: application/json"   -d '{
+curl -X POST <URL_DO_WEBHOOK> \
+  -H "Content-Type: application/json" \
+  -d '{
     "type": "message",
     "attachments": [{
       "contentType": "application/vnd.microsoft.card.adaptive",
@@ -465,11 +467,10 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
         # Extrai informações do PR
         pr_id = resource.get("pullRequestId")
         title = resource.get("title", "Sem título")
-        description = resource.get("description", "Sem descrição")
+        description = resource.get("description") or "Sem descrição"
         author = resource.get("createdBy", {}).get("displayName", "Desconhecido")
         source_branch = resource.get("sourceRefName", "").replace("refs/heads/", "")
         repo_name = resource.get("repository", {}).get("name", "")
-        project_name = event.get("resourceContainers", {}).get("project", {}).get("name", "")
 
         # Obtém revisores
         reviewers = resource.get("reviewers", [])
@@ -478,9 +479,15 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             for r in reviewers
         ]) if reviewers else "Nenhum revisor atribuído"
 
-        # Constrói a URL do PR
-        org_url = event.get("resourceContainers", {}).get("account", {}).get("baseUrl", "")
-        pr_url = f"https://dev.azure.com/{project_name}/_git/{repo_name}/pullrequest/{pr_id}"
+        # Constrói a URL do PR: preferir o link pronto do payload
+        # (resource._links.web.href). resourceContainers traz apenas IDs
+        # (sem name/baseUrl), então não dá para montar a URL por ele.
+        # Reserva: derivar a base da URL da API do repositório
+        # (ex.: https://dev.azure.com/org/proj/_apis/git/repositories/<id>).
+        pr_url = resource.get("_links", {}).get("web", {}).get("href") or ""
+        if not pr_url:
+            repo_base = resource.get("repository", {}).get("url", "").split("/_apis/")[0]
+            pr_url = f"{repo_base}/_git/{repo_name}/pullrequest/{pr_id}"
 
         # Monta o Adaptive Card
         card = {
@@ -602,7 +609,7 @@ app.post('/webhook/azuredevops', async (req, res) => {
     return res.status(200).json({ status: 'ignored', eventType });
   }
 
-  const resource = event.resource;
+  const resource = event.resource || {};
   const targetBranch = resource.targetRefName;
 
   // Filtra apenas PRs para develop
@@ -613,16 +620,20 @@ app.post('/webhook/azuredevops', async (req, res) => {
     });
   }
 
+  // resourceContainers traz apenas IDs — derive a base da URL da API do
+  // repositório (ex.: https://dev.azure.com/org/proj/_apis/...) como reserva.
+  const repoBase = (resource.repository?.url || '').split('/_apis/')[0];
+
   const pr = {
     id: resource.pullRequestId,
-    title: resource.title,
-    author: resource.createdBy.displayName,
-    sourceBranch: resource.sourceRefName.replace('refs/heads/', ''),
+    title: resource.title || 'Sem título',
+    author: resource.createdBy?.displayName || 'Desconhecido',
+    sourceBranch: (resource.sourceRefName || '').replace('refs/heads/', ''),
     targetBranch: 'develop',
-    repo: resource.repository.name,
+    repo: resource.repository?.name || '',
     description: resource.description || 'Sem descrição',
-    url: resource._links?.web?.href || 
-         `https://dev.azure.com/${event.resourceContainers.project.name}/_git/${resource.repository.name}/pullrequest/${resource.pullRequestId}`,
+    url: resource._links?.web?.href ||
+         (repoBase ? `${repoBase}/_git/${resource.repository.name}/pullrequest/${resource.pullRequestId}` : ''),
     reviewers: (resource.reviewers || []).map(r => r.displayName).join(', ') || 'Nenhum'
   };
 
@@ -702,11 +713,15 @@ app.listen(PORT, () => {
 
 ### Teste 1: Validação do Webhook do Teams
 
+Reutilize o payload completo da seção 3.3 (Adaptive Card). Formatos legados como `{"text": "..."}` não são aceitos pelos webhooks modernos do Teams (Workflows):
+
 ```bash
-curl -X POST <URL_DO_WEBHOOK>   -H "Content-Type: application/json"   -d '{"text": "Teste de conectividade"}'
+curl -X POST <URL_DO_WEBHOOK> \
+  -H "Content-Type: application/json" \
+  -d '{ payload Adaptive Card da seção 3.3 }'
 ```
 
-**Resultado esperado:** Mensagem "Teste de conectividade" aparece no canal.
+**Resultado esperado:** O card de teste da seção 3.3 aparece no canal.
 
 ### Teste 2: Simulação de Evento do Azure DevOps
 
@@ -781,7 +796,7 @@ Você pode reenviar eventos do histórico do Service Hook:
 
 2. **Use HTTPS sempre:** O Azure DevOps só permite webhooks HTTPS
 
-3. **Valide a origem do payload:** Em produção, valide que o request realmente vem do Azure DevOps verificando headers ou implementando HMAC (se disponível)
+3. **Valide a origem do payload:** Configure **Basic authentication username/password** no próprio Service Hook (campos nativos do tipo Web Hooks) e valide o header `Authorization` no middleware antes de processar. Service Hooks do Azure DevOps não assinam o payload com HMAC, então o basic auth é a validação disponível
 
 4. **Roteie por canal:** Use webhooks diferentes para diferentes tipos de eventos (PRs, builds, deploys) em canais separados
 
