@@ -1,5 +1,3 @@
-teste
-
 Contexto
 A XYZ Administradora de Cartões de Crédito busca uma solução robusta para gerenciar transações financeiras de clientes. A aplicação precisa ser eficiente, escalável e bem estruturada, garantindo confiabilidade no processamento de um alto volume de dados.
 Objetivo
@@ -37,8 +35,8 @@ Numero_Cartao, Valor_Total (SUM do Valor_Transacao), Quantidade_Transacoes (COUN
 Criar uma scalar function que recebe um valor e retorna a categoria.
 Faixa de Valor (R$)	Categoria
 > 2000	Premium
-1000 - 2000	Alta
-500 - 1000	Média
+>= 1000 e < 2000	Alta
+>= 500 e < 1000	Média
 < 500	Baixa
 Table-Valued Function (TVF)
 Criar uma TVF que retorna todas as transações categorizadas para um período.
