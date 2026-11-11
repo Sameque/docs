@@ -3,7 +3,7 @@
 ## Linguagem
 
 - Utilizar .NET 10 e a versão do C# suportada pelo projeto.
-- Sempre utilizar recursos modernos da linguagem quando aumentarem a legibilidade e simplicidade do código. Exemplos disponíveis a partir do C# 14/.NET 10: namespaces com escopo de arquivo (file-scoped), primary constructors, records e record structs, pattern matching, collection expressions, propriedades required e init-only, extension properties/methods e field-backed properties.
+- Sempre utilizar recursos modernos da linguagem quando aumentarem a legibilidade e simplicidade do código. Recursos já consolidados em versões anteriores continuam recomendados: namespaces com escopo de arquivo (file-scoped, C# 10), primary constructors (C# 12), records e record structs (C# 9/10), pattern matching, collection expressions (C# 12), propriedades required (C# 11) e init-only (C# 9). Novidades do C# 14/.NET 10: extension properties/methods (extension members) e field-backed properties.
 - Seguir as especificações ECMA-334 (C#) e ECMA-335 (CLI) como referência formal de gramática e infraestrutura. Atenção: a padronização ECMA fica bem atrás da versão comercial do C# — a 7ª edição do ECMA-334 (dez/2023) cobre aproximadamente o C# 7 (2017), enquanto o projeto usa C# 14. Em caso de conflito, prevalece o comportamento oficial do compilador/documentação da Microsoft para a versão do C# em uso, não o texto do ECMA.
 
 ---

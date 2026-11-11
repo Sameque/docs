@@ -6,4 +6,4 @@ As guidelines gerais deste projeto ficam no `AGENTS.md`, escrito para funcionar 
 @docs/guidelines/developing.md
 @docs/guidelines/dotnet.md
 @docs/guidelines/handle-error.md
-@docs/guidelines/lessons-learned.md
+@docs/lessons-learned.md

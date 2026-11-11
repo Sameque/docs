@@ -286,7 +286,7 @@ Permitir consultar rapidamente, antes de escrever código, um resumo do que já 
 ## Local de Armazenamento
 
 ```text
-docs/guidelines/lessons-learned.md
+docs/lessons-learned.md
 ```
 
 ## Quando Atualizar
