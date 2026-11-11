@@ -16,13 +16,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         curl ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Torch CPU-only: evita os ~3 GB de wheels CUDA (torch cu124 + libs NVIDIA)
-# que nunca seriam usados num servidor sem GPU. 2.14.0 e a versao que a
-# imagem oficial do projeto pinada/testada usa.
+# Torch CPU-only: evita os ~3 GB de wheels CUDA (torch + libs NVIDIA)
+# que nunca seriam usados num servidor sem GPU. A 2.14.0 e a versao que
+# a imagem oficial do projeto usa (pinada/testada).
 ARG TORCH_VERSION=2.14.0
 RUN pip install --upgrade pip && \
     pip install "torch==${TORCH_VERSION}" --index-url https://download.pytorch.org/whl/cpu
 
+# Versao pinada para reprodutibilidade. O PyPI pode ter versoes mais novas:
+# ao atualizar, ajuste tambem a tag da imagem (README/docker-compose).
 ARG LAYA_VERSION=0.3.20
 RUN pip install "laya[serve]==${LAYA_VERSION}"
 

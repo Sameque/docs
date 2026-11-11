@@ -32,6 +32,15 @@ para usar a mais recente, ajuste `LAYA_VERSION` e a tag.)
 
 ### Com docker compose (recomendado):
 
+Crie um arquivo `.env` ao lado do `docker-compose.yml` com a chave da API
+(o compose falha imediatamente se `LAYA_API_KEY` não estiver definida):
+
+```bash
+echo "LAYA_API_KEY=$(openssl rand -hex 32)" > .env
+```
+
+Depois:
+
 ```bash
 docker compose up -d --build
 ```
@@ -39,9 +48,12 @@ docker compose up -d --build
 ### Com docker run:
 
 ```bash
+export LAYA_API_KEY=$(openssl rand -hex 32)
+echo "Chave gerada: $LAYA_API_KEY"
+
 docker run -d --name laya \
   -p 8000:8000 \
-  -e LAYA_API_KEY=$(openssl rand -hex 32) \
+  -e LAYA_API_KEY=$LAYA_API_KEY \
   laya-serve:0.3.20
 ```
 

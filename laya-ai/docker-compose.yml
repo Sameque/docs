@@ -1,17 +1,20 @@
 services:
   laya:
-    image: laya-serve:0.3.20
+    image: laya-serve:${LAYA_VERSION:-0.3.20}
     build:
       context: .
       args:
-        LAYA_VERSION: "0.3.20"
+        LAYA_VERSION: ${LAYA_VERSION:-0.3.20}
+        TORCH_VERSION: "2.14.0"
     container_name: laya-serve
     restart: unless-stopped
     ports:
       - "8000:8000"
     environment:
-      # Troque pela sua chave forte: openssl rand -hex 32
-      LAYA_API_KEY: "troque-esta-chave"
+      # Obrigatoria: o compose falha imediatamente se a chave nao estiver
+      # definida. Crie o arquivo .env ao lado deste compose com:
+      #   LAYA_API_KEY=<valor gerado por: openssl rand -hex 32>
+      LAYA_API_KEY: "${LAYA_API_KEY:?defina LAYA_API_KEY no arquivo .env}"
       LAYA_DEVICE: cpu
       LAYA_PRELOAD: "1"
       LAYA_HOST: 0.0.0.0
@@ -19,9 +22,3 @@ services:
       LAYA_MODELS: "english,multilingual,typed-decisions"
       LAYA_AUTO_TASK: "0"
       OMP_NUM_THREADS: "4"
-    healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:8000/health"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 300s
